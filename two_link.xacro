@@ -1,0 +1,74 @@
+
+
+
+<robot name="my_robot" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+
+
+  <!-- * * * Link Definitions * * * -->
+
+  <link name="base_link">
+    <visual>
+        <origin xyz="0 0 0.0425" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.32 0.26 0.085"/>
+      </geometry>
+      <material name="Cyan1">
+            <color rgba="0 0.9 0.9 1.0"/>
+        </material>
+    </visual>
+  
+  </link>
+
+ <link name="link_01">
+    <visual>
+      <geometry>
+        <cylinder length="0.6" radius="0.1"/>
+      </geometry>
+    </visual>
+  </link>
+
+<joint name="base_to_right_leg" type="revolute">
+    <parent link="base_link"/>
+    <child link="link_01"/>
+  <origin xyz="0 0 0.385 " rpy="0 0 0" />
+  <axis xyz="0 0 1"/>
+  <limit effort="30" velocity="1.0" lower="-0.45" upper="0.45" />
+  </joint>
+
+
+<link name="link_02">
+    <visual>
+      <geometry>
+        <cylinder length="0.2" radius="0.1"/>
+      </geometry>
+    </visual>
+  </link>
+  
+
+<joint name="joint02" type="fixed">
+    <parent link="link_01"/>
+    <child link="link_02"/>
+  <origin xyz="0 0 0.4 " rpy="1.57 0 0" />
+  <axis xyz="1 0 0"/>
+  <limit effort="30" velocity="1.0" lower="-0.45" upper="0.45" />
+  </joint>
+
+<link name="link_03">
+    <visual>
+      <origin rpy="1.57 0 0" xyz="0 0.4 0"/>
+      <geometry>
+        <cylinder length="0.6" radius="0.1"/>
+      </geometry>
+    </visual>
+  </link>
+
+<joint name="joint03" type="revolute">
+    <parent link="link_02"/>
+    <child link="link_03"/>
+  <origin xyz="0 0 0" rpy="0 0 0" />
+  <axis xyz="0 0 1"/>
+  <limit effort="30" velocity="1.0" lower="-3.14" upper="3.14" />
+  </joint>
+
+</robot>
